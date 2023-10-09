@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: ./docker/Dockerfile
+    container_name: "app-docker"
+    volumes:
+      - .:/application
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - app
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_USER: 'viktor'
+      MYSQL_PASSWORD: "311991"
+      MYSQL_ROOT_PASSWORD: "311991"
+      MYSQL_DATABASE: flask_app
+    ports:
+      - "3307:3306"
+    networks:
+      - app
+
+networks:
+  app:
+    driver: bridge
