@@ -70,6 +70,7 @@ def get_articles():
             'content': article.content,
             'category': article.category.name if article.category else None,
             'created_at': article.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+            'user_name': article.user.username,
             'likes': article.likes.count(),
             'dislikes': article.dislikes.count()
         })
@@ -86,6 +87,7 @@ def get_article(article_id):
         'content': article.content,
         'category': article.category.name if article.category else None,
         'created_at': article.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+        'user_name': article.user.username,
         'likes': article.likes.count(),
         'dislikes': article.dislikes.count()
     })
